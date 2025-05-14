@@ -21,8 +21,8 @@ public class CartTest {
 
     @Test
     public void testAddItemToCart() {
-        homePage.addItemToCart("item1", 10.0);
-        homePage.addItemToCart("item2", 20.0);
+        homePage.addItemToCart("item1", 15.0);
+        homePage.addItemToCart("item2", 40.0);
 
         String cartContents = cartPage.viewCart();
         assertTrue(cartContents.contains("item1"));
@@ -31,21 +31,21 @@ public class CartTest {
 
     @Test
     public void testCartTotal() {
-        homePage.addItemToCart("item1", 10.0);
-        homePage.addItemToCart("item2", 20.0);
+        homePage.addItemToCart("item1", 15.0);
+        homePage.addItemToCart("item2", 40.0);
 
         double total = cartPage.getCartTotal();
-        assertEquals(30.0, total, 0.01); // Total should be 10 + 20
+        assertEquals(55.0, total, 0.01);
     }
 
     @Test
     public void testCartIsEmptyDirectly() {
-        assertTrue(cart.getItems().isEmpty()); // Check cart directly
+        assertTrue(cart.getItems().isEmpty());
     }
 
     @Test
     public void testCartEmptyOnStart() {
-        assertTrue(cart.isEmpty()); // or however you check if the cart is empty
+        assertTrue(cart.isEmpty());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class CartTest {
         assertTrue(cartContentsBeforeRemoval.contains("item1"));
         assertTrue(cartContentsBeforeRemoval.contains("item2"));
 
-        cart.getItems().clear(); // Simulate removing all items (simple approach for this test)
+        cart.getItems().clear();
         String cartContentsAfterRemoval = cartPage.viewCart();
         assertFalse(cartContentsAfterRemoval.contains("item1"));
         assertFalse(cartContentsAfterRemoval.contains("item2"));
